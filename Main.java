@@ -26,7 +26,7 @@ public class Main {
 
     IO.println("\n UPDATE PARTICIPANT");
     IO.println("[what you want to change \n [1] · name \n [2] · age \n [3] · both \n [other] · nothing");
-    nominationPro.updateParticipant(1, 0);
+    nominationPro.updateParticipant(1, 3);
     listNominationPro(nominationPro);
 
     IO.println("\n REMOVE PARTICIPANT");

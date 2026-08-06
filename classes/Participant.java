@@ -18,6 +18,14 @@ public class Participant {
     return this.age;
   }
 
+  public String updName(String name) {
+    return this.name = name;
+  }
+
+  public int updAge(int age) {
+    return this.age = age;
+  }
+
   @Override
   public String toString() {
     return this.name + " · " + this.age;

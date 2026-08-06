@@ -26,18 +26,18 @@ public class Nomination {
 
   public void addParticipant(Scanner scanner) {
     IO.print("[participant name] ➤ ");
-    String pName = scanner.nextLine();
+    String name = scanner.nextLine();
 
-    IO.print("[participant age] ➤ ");
-    int pAge = Integer.valueOf(scanner.nextLine());
+    IO.print("[participant age]  ➤ ");
+    int age = Integer.valueOf(scanner.nextLine());
 
-    Participant p = new Participant(pName, pAge);
+    Participant p = new Participant(name, age);
     participants.add(p);
   }
 
   public void removeParticipant(int uIndex) {
-    int i = uIndex - 1;
-    participants.remove(i);
+    int index = uIndex - 1;
+    participants.remove(index);
   }
 
   public void updateParticipant(int uIndex, int whatToUpdate) {
@@ -45,16 +45,14 @@ public class Nomination {
     Participant p = participants.get(index);
     IO.println(p);
 
-    String updatedName = "moonlord";
-    int updatedAge = 19;
-
     // TO-DO put variables 'updated' inside condition and make it scanner
     if (whatToUpdate == 1) {
-      p = new Participant(updatedName, p.getAge());
+      p.updName("moonlord");
     } else if (whatToUpdate == 2) {
-      p = new Participant(p.getName(), updatedAge);
+      p.updAge(19);
     } else if (whatToUpdate == 3) {
-      p = new Participant(updatedName, updatedAge);
+      p.updName("moonlord");
+      p.updAge(19);
     } else {
       p = new Participant(p.getName(), p.getAge());
     }
