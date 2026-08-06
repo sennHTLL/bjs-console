@@ -24,10 +24,15 @@ public class Main {
     addIntoNominationPro(scanner, nominationPro);
     listNominationPro(nominationPro);
 
+    IO.println("\n UPDATE PARTICIPANT");
+    IO.println("[what you want to change \n [1] · name \n [2] · age \n [3] · both \n [other] · nothing");
+    nominationPro.updateParticipant(1, 0);
+    listNominationPro(nominationPro);
+
     IO.println("\n REMOVE PARTICIPANT");
     nominationPro.removeParticipant(1);
 
-    IO.println("\n UPD");
+    IO.println("\n UPDATE LIST");
     listNominationPro(nominationPro);
   }
 

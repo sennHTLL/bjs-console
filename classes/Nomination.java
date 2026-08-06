@@ -39,4 +39,27 @@ public class Nomination {
     int i = uIndex - 1;
     participants.remove(i);
   }
+
+  public void updateParticipant(int uIndex, int whatToUpdate) {
+    int index = uIndex - 1;
+    Participant p = participants.get(index);
+    IO.println(p);
+
+    String updatedName = "moonlord";
+    int updatedAge = 19;
+
+    // TO-DO put variables 'updated' inside condition and make it scanner
+    if (whatToUpdate == 1) {
+      p = new Participant(updatedName, p.getAge());
+    } else if (whatToUpdate == 2) {
+      p = new Participant(p.getName(), updatedAge);
+    } else if (whatToUpdate == 3) {
+      p = new Participant(updatedName, updatedAge);
+    } else {
+      p = new Participant(p.getName(), p.getAge());
+    }
+
+    participants.remove(index);
+    participants.add(index, p);
+  }
 }
