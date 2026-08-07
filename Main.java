@@ -11,6 +11,10 @@ public class Main {
     Judge judge1 = new Judge("judge 1");
     IO.println(judge1);
 
+    String nomKidsFilePath = "data/1v1_kids.txt";
+    String nomJuniorFilePath = "data/1v1_junior.txt";
+    String nomProFilePath = "data/1v1_pro.txt";
+
     Nomination nominationKids = new Nomination("1v1 kids");
     Nomination nominationJunior = new Nomination("1v1 junior");
     Nomination nominationPro = new Nomination("1v1 pro");
@@ -20,35 +24,30 @@ public class Main {
     nominationJunior.getTitle();
     nominationPro.getTitle();
 
+    IO.println("\n ===== KIDS =====");
+    IO.println("GET PARTICIPANTS FROM FILE");
+    nominationKids.getParticipantsFromFile(nomKidsFilePath);
+    nominationKids.getParticipants();
+
+    IO.println("\n ===== JUNIOR =====");
+    IO.println("GET PARTICIPANTS FROM FILE");
+    nominationJunior.getParticipantsFromFile(nomJuniorFilePath);
+    nominationJunior.getParticipants();
+
     IO.println("\n ===== PRO =====");
-    addIntoNominationPro(scanner, nominationPro);
-    listNominationPro(nominationPro);
+    IO.println("GET PARTICIPANTS FROM FILE");
+    nominationPro.getParticipantsFromFile(nomProFilePath);
+    nominationPro.getParticipants();
+    nominationPro.addParticipant(scanner);
+    nominationPro.getParticipants();
 
-    IO.println("\n UPDATE PARTICIPANT");
-    IO.println("[what you want to change \n [1] · name \n [2] · age \n [3] · both \n [other] · nothing");
-    nominationPro.updateParticipant(1, 3);
-    listNominationPro(nominationPro);
+    // IO.println("\n UPDATE PARTICIPANT");
+    // IO.println("[what you want to change \n [1] · name \n [2] · age \n [3] · both
+    // \n [other] · nothing");
+    // nominationPro.updateParticipant(1, 3);
+    // IO.println("\n REMOVE PARTICIPANT");
+    // nominationPro.removeParticipant(1);
 
-    IO.println("\n REMOVE PARTICIPANT");
-    nominationPro.removeParticipant(1);
-
-    IO.println("\n UPDATE LIST");
-    listNominationPro(nominationPro);
-  }
-
-  public static void addIntoNominationPro(Scanner scanner, Nomination nom) {
-    IO.println("ADD PARTICIPANTS");
-    for (int i = 0; i < 4; i++) {
-      addParticipant(scanner, nom);
-    }
-  }
-
-  public static void listNominationPro(Nomination nom) {
-    IO.println("\n LIST PARTICIPANTS");
-    nom.getParticipants();
-  }
-
-  public static void addParticipant(Scanner scanner, Nomination nom) {
-    nom.addParticipant(scanner);
+    scanner.close();
   }
 }

@@ -1,5 +1,9 @@
 package classes;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,8 +17,32 @@ public class Nomination {
     this.participants = new ArrayList<>();
   }
 
-  public String getTitle() {
-    return this.title;
+  public void getTitle() {
+    IO.println(this.title);
+  }
+
+  public void getParticipantsFromFile(String filePath) {
+    String readLine;
+    String[] splitParts;
+
+    String name;
+    int age;
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+      while ((readLine = reader.readLine()) != null) {
+        splitParts = readLine.split(", ");
+
+        name = splitParts[0];
+        age = Integer.valueOf(splitParts[1]);
+
+        Participant p = new Participant(name, age);
+        participants.add(p);
+      }
+    } catch (FileNotFoundException e) {
+      IO.println("[error] · " + e);
+    } catch (IOException e) {
+      IO.println("[error] · " + e);
+    }
   }
 
   public void getParticipants() {
