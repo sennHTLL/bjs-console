@@ -30,4 +30,8 @@ public class Participant {
   public String toString() {
     return this.name + " · " + this.age;
   }
+
+  public String toFile() {
+    return this.name + ", " + this.age;
+  }
 }

@@ -1,9 +1,13 @@
 package classes;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -52,7 +56,7 @@ public class Nomination {
     }
   }
 
-  public void addParticipant(Scanner scanner) {
+  public void addParticipant(Scanner scanner, String filePath) {
     IO.print("[participant name] ➤ ");
     String name = scanner.nextLine();
 
@@ -61,14 +65,59 @@ public class Nomination {
 
     Participant p = new Participant(name, age);
     participants.add(p);
+
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+      writer.write(p.toFile());
+      writer.newLine();
+    } catch (FileNotFoundException e) {
+      IO.println("[error] · " + e);
+    } catch (IOException e) {
+      IO.println("[error] · " + e);
+    }
   }
 
-  public void removeParticipant(int uIndex) {
+  public void removeParticipant(String filePath, int uIndex) {
     int index = uIndex - 1;
     participants.remove(index);
+
+    String tempFile = "data/temp.txt";
+    File oldFile = new File(filePath);
+    File newFile = new File(tempFile);
+
+    int line = 0;
+    String currentLine;
+
+    try {
+      FileWriter fw = new FileWriter(tempFile, true);
+      BufferedWriter bw = new BufferedWriter(fw);
+      PrintWriter pw = new PrintWriter(bw);
+
+      FileReader fr = new FileReader(filePath);
+      BufferedReader br = new BufferedReader(fr);
+
+      while ((currentLine = br.readLine()) != null) {
+        line++;
+        if (uIndex != line) {
+          pw.println(currentLine);
+        }
+      }
+
+      pw.flush();
+      pw.close();
+      fr.close();
+      br.close();
+      bw.close();
+      fw.close();
+
+      oldFile.delete();
+      File dump = new File(filePath);
+      newFile.renameTo(dump);
+    } catch (IOException e) {
+      IO.println("[error] · " + e);
+    }
   }
 
-  public void updateParticipant(int uIndex, int whatToUpdate) {
+  public void updateParticipant(String filePath, int uIndex, int whatToUpdate) {
     int index = uIndex - 1;
     Participant p = participants.get(index);
     IO.println(p);
@@ -87,5 +136,44 @@ public class Nomination {
 
     participants.remove(index);
     participants.add(index, p);
+
+    // [version 2]
+    String tempFile = "data/temp.txt";
+    File oldFile = new File(filePath);
+    File newFile = new File(tempFile);
+
+    int line = 0;
+    String currentLine;
+
+    try {
+      FileWriter fw = new FileWriter(tempFile, true);
+      BufferedWriter bw = new BufferedWriter(fw);
+      PrintWriter pw = new PrintWriter(bw);
+
+      FileReader fr = new FileReader(filePath);
+      BufferedReader br = new BufferedReader(fr);
+
+      while ((currentLine = br.readLine()) != null) {
+        line++;
+        if (uIndex == line) {
+          pw.println(p.toFile());
+        } else if (uIndex != line) {
+          pw.println(currentLine);
+        }
+      }
+
+      pw.flush();
+      pw.close();
+      fr.close();
+      br.close();
+      bw.close();
+      fw.close();
+
+      oldFile.delete();
+      File dump = new File(filePath);
+      newFile.renameTo(dump);
+    } catch (IOException e) {
+      IO.println("[error] · " + e);
+    }
   }
 }
