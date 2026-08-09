@@ -25,6 +25,19 @@ public class Nomination {
     IO.println(this.title);
   }
 
+  public void getList() {
+    for (Participant p : participants) {
+      int index = participants.indexOf(p) + 1;
+      IO.println(index + ". [" + this.title + "] · " + p);
+    }
+  }
+
+  public void getParticipant() {
+    for (Participant p : participants) {
+      p.getName();
+    }
+  }
+
   public void getParticipantsFromFile(String filePath) {
     String readLine;
     String[] splitParts;
@@ -46,13 +59,6 @@ public class Nomination {
       IO.println("[error] · " + e);
     } catch (IOException e) {
       IO.println("[error] · " + e);
-    }
-  }
-
-  public void getParticipants() {
-    for (Participant p : participants) {
-      int index = participants.indexOf(p) + 1;
-      IO.println(index + ". [" + this.title + "] · " + p);
     }
   }
 
