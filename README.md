@@ -9,3 +9,9 @@
 · remove participant
 
 · update participant
+
+## version 2
+
+· version 1 methods but with text file
+
+· scoring methods
