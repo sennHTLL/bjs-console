@@ -32,10 +32,13 @@ public class Nomination {
     }
   }
 
-  public void getParticipant() {
-    for (Participant p : participants) {
-      p.getName();
-    }
+  public int getListSize() {
+    return participants.size();
+  }
+
+  public String getParticipant(int index) {
+    Participant p = participants.get(index);
+    return p.getName();
   }
 
   public void getParticipantsFromFile(String filePath) {

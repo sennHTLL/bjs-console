@@ -19,9 +19,9 @@ public class Main {
     Nomination nominationJunior = new Nomination("1v1 junior");
     Nomination nominationPro = new Nomination("1v1 pro");
 
-    Scoring scoreNominationKids = new Scoring(nominationKids);
-    Scoring scoreNominationJunior = new Scoring(nominationJunior);
-    Scoring scoreNominationPro = new Scoring(nominationPro);
+    Scoring scoreNominationKids = new Scoring();
+    Scoring scoreNominationJunior = new Scoring();
+    Scoring scoreNominationPro = new Scoring();
 
     IO.println("\n LIST NOMINATIONS");
     nominationKids.getTitle();
@@ -42,12 +42,10 @@ public class Main {
     IO.println("GET PARTICIPANTS FROM FILE");
     nominationPro.getParticipantsFromFile(filePathNominationPro);
     nominationPro.getList();
-    nominationPro.getParticipant();
     // nominationPro.addParticipant(scanner, filePathNominationPro);
     // nominationPro.getList();
 
-    scoreNominationPro.score(judge);
-    IO.println(scoreNominationPro);
+    scoreNominationPro.score(judge, nominationPro);
 
     // IO.println("\n UPDATE PARTICIPANT");
     // IO.println("[what you want to change \n [1] · name \n [2] · age \n [3] · both
