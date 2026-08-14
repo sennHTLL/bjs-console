@@ -2,16 +2,28 @@
 
 ## version 1
 
-· adding judge, nomination, participant
+- [x] adding judge, nomination, participant
 
-· list judges, nominations, participants
+- [x] list judges, nominations, participants
 
-· remove participant
+- [x] remove participant
 
-· update participant
+- [x] update participant
 
 ## version 2
 
-· version 1 methods but with text file
+- [x] v.1 methods but with text file
 
-· scoring methods
+- [x] scoring methods
+
+- [ ] output results in order from high-to-low scores
+
+- [ ] random sets per nomination
+
+- [ ] scoring inside sets
+
+- [ ] basic tie-break logic
+
+## version 3
+
+didn't figured out right now (ᵕ—ᴗ—)
