@@ -78,8 +78,10 @@ public class Main {
         // nom.addParticipant(scan, fp);
         // nom.getList();
 
+        IO.println("PRELIMS");
         scoreNom.score(judge, nom, fpr);
-
+        IO.println("PRELIMS RESULTS");
+        scoreNom.printResults(nom, fpr);
         // IO.println("\n UPDATE PARTICIPANT");
         // IO.println("[what you want to change \n [1] · name \n [2] · age \n [3] · both
         // \n [other] · nothing");

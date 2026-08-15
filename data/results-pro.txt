@@ -1,0 +1,4 @@
+erzhan, 5.0
+amir, 4.0
+asan, 3.0
+sen, 2.0

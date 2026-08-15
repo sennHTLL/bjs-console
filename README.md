@@ -16,7 +16,7 @@
 
 - [x] scoring methods
 
-- [ ] output results in order from high-to-low scores
+- [x] output results in order from high-to-low scores
 
 - [ ] random sets per nomination
 
