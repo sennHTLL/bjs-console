@@ -25,6 +25,10 @@ public class Nomination {
         IO.println(this.title);
     }
 
+    public ArrayList<Participant> getArrayList() {
+        return this.participants;
+    }
+
     public void getList() {
         for (Participant p : participants) {
             int index = participants.indexOf(p) + 1;

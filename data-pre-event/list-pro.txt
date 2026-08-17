@@ -2,3 +2,7 @@ sen, 20
 asan, 20
 amir, 20
 erzhan, 20
+sen, 20
+asan, 20
+amir, 20
+erzhan, 20

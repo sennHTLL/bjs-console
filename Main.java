@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import battle.Scoring;
+import bridge.RandomSetGenerator;
 import classes.Judge;
 import classes.Nomination;
 
@@ -13,13 +14,13 @@ public class Main {
         judge[1] = new Judge("judge · 2");
         judge[2] = new Judge("judge · 3");
 
-        String filePathNominationKids = "data/list-kids.txt";
-        String filePathNominationJunior = "data/list-junior.txt";
-        String filePathNominationPro = "data/list-pro.txt";
+        String filePathNominationKids = "data-pre-event/list-kids.txt";
+        String filePathNominationJunior = "data-pre-event/list-junior.txt";
+        String filePathNominationPro = "data-pre-event/list-pro.txt";
 
-        String filePathNominationKidsResults = "data/results-kids.txt";
-        String filePathNominationJuniorResults = "data/results-junior.txt";
-        String filePathNominationProResults = "data/results-pro.txt";
+        String filePathNominationKidsResults = "data-in-event/results-kids.txt";
+        String filePathNominationJuniorResults = "data-in-event/results-junior.txt";
+        String filePathNominationProResults = "data-in-event/results-pro.txt";
 
         Nomination nominationKids = new Nomination("1v1 kids");
         Nomination nominationJunior = new Nomination("1v1 junior");
@@ -29,24 +30,29 @@ public class Main {
         Scoring scoreNominationJunior = new Scoring();
         Scoring scoreNominationPro = new Scoring();
 
+        RandomSetGenerator randomSetGeneratorKids = new RandomSetGenerator(nominationKids);
+        RandomSetGenerator randomSetGeneratorJunior = new RandomSetGenerator(nominationJunior);
+        RandomSetGenerator randomSetGeneratorPro = new RandomSetGenerator(nominationPro);
+
         IO.println("\n LIST NOMINATIONS");
         nominationKids.getTitle();
         nominationJunior.getTitle();
         nominationPro.getTitle();
 
         IO.println("\n ===== KIDS =====");
-        IO.println("GET PARTICIPANTS FROM FILE");
-        nominationKids.getParticipantsFromFile(filePathNominationKids);
-        nominationKids.getList();
+        manageNomination(scanner, judge, nominationKids,
+                filePathNominationKids, filePathNominationKidsResults, scoreNominationKids);
+        randomSetGeneratorKids.shuffle();
 
         IO.println("\n ===== JUNIOR =====");
-        IO.println("GET PARTICIPANTS FROM FILE");
-        nominationJunior.getParticipantsFromFile(filePathNominationJunior);
-        nominationJunior.getList();
+        manageNomination(scanner, judge, nominationJunior,
+                filePathNominationJunior, filePathNominationJuniorResults, scoreNominationJunior);
+        randomSetGeneratorJunior.shuffle();
 
         IO.println("\n ===== PRO =====");
         manageNomination(scanner, judge, nominationPro,
                 filePathNominationPro, filePathNominationProResults, scoreNominationPro);
+        randomSetGeneratorPro.shuffle();
         // IO.println("GET PARTICIPANTS FROM FILE");
         // nominationPro.getParticipantsFromFile(filePathNominationPro);
         // nominationPro.getList();
@@ -78,10 +84,10 @@ public class Main {
         // nom.addParticipant(scan, fp);
         // nom.getList();
 
-        IO.println("PRELIMS");
-        scoreNom.score(judge, nom, fpr);
-        IO.println("PRELIMS RESULTS");
-        scoreNom.printResults(nom, fpr);
+        // IO.println("PRELIMS");
+        // scoreNom.score(judge, nom, fpr);
+        // IO.println("PRELIMS RESULTS");
+        // scoreNom.printResults(nom, fpr);
         // IO.println("\n UPDATE PARTICIPANT");
         // IO.println("[what you want to change \n [1] · name \n [2] · age \n [3] · both
         // \n [other] · nothing");
