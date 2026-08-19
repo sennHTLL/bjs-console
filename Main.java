@@ -40,16 +40,19 @@ public class Main {
         nominationPro.getTitle();
 
         IO.println("\n ===== KIDS =====");
+        IO.println(nominationKids.getListSize());
         manageNomination(scanner, judge, nominationKids,
                 filePathNominationKids, filePathNominationKidsResults, scoreNominationKids);
-        randomSetGeneratorKids.shuffle();
+        // randomSetGeneratorKids.shuffle();
 
         IO.println("\n ===== JUNIOR =====");
+        IO.println(nominationJunior.getListSize());
         manageNomination(scanner, judge, nominationJunior,
                 filePathNominationJunior, filePathNominationJuniorResults, scoreNominationJunior);
-        randomSetGeneratorJunior.shuffle();
+        // randomSetGeneratorJunior.shuffle();
 
         IO.println("\n ===== PRO =====");
+        IO.println(nominationPro.getListSize());
         manageNomination(scanner, judge, nominationPro,
                 filePathNominationPro, filePathNominationProResults, scoreNominationPro);
         randomSetGeneratorPro.shuffle();
