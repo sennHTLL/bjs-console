@@ -50,7 +50,6 @@ public class Scoring {
         Arrays.sort(scoredParticipants, (a, b) -> Double.compare(b.getScore(), a.getScore()));
 
         for (ScoredParticipant scoredParticipant : scoredParticipants) {
-            IO.println(scoredParticipant);
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
                 writer.write(scoredParticipant.toFile());
                 writer.newLine();

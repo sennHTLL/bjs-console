@@ -1,5 +1,9 @@
 package bridge;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -31,30 +35,28 @@ public class RandomSetGenerator {
             participants.add(p);
             count++;
             if (count == 4) {
-                IO.println();
+                IO.println("· · · · ·");
             }
         }
 
-        IO.println("[participants num] · " + participants.size());
-        IO.println(" ===== 2D ARRAY ===== ");
+        // IO.println(" ===== 2D ARRAY ===== ");
+        // IO.println("[participants num] · " + participants.size());
         int row = 0;
         int column = 0;
 
         this.groups.add(new ArrayList<Participant>());
 
         for (int i = 0; i < participants.size(); i++) {
-            IO.println(i);
             this.groups.get(row).add(column, participants.get(i));
             column++;
             if (column == 4) {
-                IO.println();
                 this.groups.add(new ArrayList<Participant>());
                 row++;
                 column = 0;
             }
         }
 
-        // this is works ⮛
+        // ===== this is works ⮛
         // this.groups.add(new ArrayList<Participant>());
         // this.groups.get(0).add(0, participants.get(0));
         // this.groups.get(0).add(1, participants.get(1));
@@ -66,11 +68,28 @@ public class RandomSetGenerator {
         // this.groups.get(1).add(2, participants.get(6));
         // this.groups.get(1).add(3, participants.get(7));
 
-        for (int i = 0; i < this.groups.size(); i++) {
-            for (int j = 0; j < this.groups.get(i).size(); j++) {
-                IO.println(this.groups.get(i).get(j));
+        // ====== stupid comment but i will forget what it does
+        // ====== print shuffled saved array and saved it in shuffled way or not
+        // for (int i = 0; i < this.groups.size(); i++) {
+        // for (int j = 0; j < this.groups.get(i).size(); j++) {
+        // IO.println(this.groups.get(i).get(j));
+        // }
+        // IO.println("[muahahahahaha]");
+        // }
+    }
+
+    public void writeInFile(String filePath) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (int i = 0; i < this.groups.size(); i++) {
+                for (int j = 0; j < this.groups.get(i).size(); j++) {
+                    writer.write(this.groups.get(i).get(j).getName());
+                    writer.newLine();
+                }
             }
-            IO.println();
+        } catch (FileNotFoundException e) {
+            IO.println("[exception] · " + e);
+        } catch (IOException e) {
+            IO.println("[exception] · " + e);
         }
     }
 }

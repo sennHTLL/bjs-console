@@ -18,9 +18,11 @@
 
 - [x] output results in order from high-to-low scores
 
-- [ ] random sets per nomination
+- [x] random sets per nomination
 
-- [ ] scoring inside sets
+- [x] scoring inside sets
+
+- [ ] write number of set (small thing iknow)
 
 - [ ] basic tie-break logic
 

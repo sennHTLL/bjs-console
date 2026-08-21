@@ -18,6 +18,10 @@ public class Main {
         String filePathNominationJunior = "data-pre-event/list-junior.txt";
         String filePathNominationPro = "data-pre-event/list-pro.txt";
 
+        // String filePathPrelimKids = "data-in-event/list-kids.txt";
+        // String filePathPrelimJunior = "data-in-event/list-junior.txt";
+        String filePathPrelimPro = "data-in-event/shuffled-pro.txt";
+
         String filePathNominationKidsResults = "data-in-event/results-kids.txt";
         String filePathNominationJuniorResults = "data-in-event/results-junior.txt";
         String filePathNominationProResults = "data-in-event/results-pro.txt";
@@ -40,22 +44,23 @@ public class Main {
         nominationPro.getTitle();
 
         IO.println("\n ===== KIDS =====");
-        IO.println(nominationKids.getListSize());
-        manageNomination(scanner, judge, nominationKids,
-                filePathNominationKids, filePathNominationKidsResults, scoreNominationKids);
-        // randomSetGeneratorKids.shuffle();
+        nominationKids.getParticipantsFromFile(filePathNominationKids);
+        nominationKids.getList();
+        randomSetGeneratorKids.shuffle();
 
         IO.println("\n ===== JUNIOR =====");
-        IO.println(nominationJunior.getListSize());
-        manageNomination(scanner, judge, nominationJunior,
-                filePathNominationJunior, filePathNominationJuniorResults, scoreNominationJunior);
-        // randomSetGeneratorJunior.shuffle();
+        nominationJunior.getParticipantsFromFile(filePathNominationJunior);
+        nominationJunior.getList();
+        randomSetGeneratorJunior.shuffle();
 
         IO.println("\n ===== PRO =====");
-        IO.println(nominationPro.getListSize());
-        manageNomination(scanner, judge, nominationPro,
-                filePathNominationPro, filePathNominationProResults, scoreNominationPro);
+        IO.println("GET PARTICIPANTS FROM FILE");
+        nominationPro.getParticipantsFromFile(filePathNominationPro);
+        nominationPro.getList();
         randomSetGeneratorPro.shuffle();
+        randomSetGeneratorPro.writeInFile(filePathPrelimPro);
+        scoreNominationPro.score(judge, nominationPro, filePathNominationProResults);
+        scoreNominationPro.printResults(nominationPro, filePathNominationProResults);
         // IO.println("GET PARTICIPANTS FROM FILE");
         // nominationPro.getParticipantsFromFile(filePathNominationPro);
         // nominationPro.getList();
@@ -81,9 +86,9 @@ public class Main {
 
     public static void manageNomination(Scanner scan, Judge[] judge, Nomination nom,
             String fp, String fpr, Scoring scoreNom) {
-        IO.println("GET PARTICIPANTS FROM FILE");
-        nom.getParticipantsFromFile(fp);
-        nom.getList();
+        // IO.println("GET PARTICIPANTS FROM FILE");
+        // nom.getParticipantsFromFile(fp);
+        // nom.getList();
         // nom.addParticipant(scan, fp);
         // nom.getList();
 
